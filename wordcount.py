@@ -1,5 +1,7 @@
-# put your code here.
-path = 'test.txt'
+import sys
+
+
+path = sys.argv[1]
 
 file = open(path)
 
@@ -11,8 +13,16 @@ for line in file:
     # tokenize line
     words = line.strip().split()
 
-    # traverse list
+    # make all lowercase so that case is irrelevant
+    words = [word.lower() for word in words]
+
+    # traverse list of words
     for word in words:
+
+        for ch in word:
+            if ch not in "abcdefghijklmnopqrstuvwxyz":
+                word = word.replace(ch, '')
+
         # add to dictionary if not present
         # update by adding one if present
         word_counts[word] = word_counts.get(word,0) + 1
