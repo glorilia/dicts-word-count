@@ -29,9 +29,10 @@ for line in file:
 # Make counter to make a Counter dictionary
 word_counts = Counter(all_words)
 alpha_words = sorted(word_counts)
+by_count_words = sorted(alpha_words, key=word_counts.__getitem__, reverse=True)
 
 # Print out each each word with its count
-for word in alpha_words:
+for word in by_count_words:
     print(word, word_counts[word])
 
 
