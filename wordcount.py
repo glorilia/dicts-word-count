@@ -24,7 +24,8 @@ for line in file:
             if ch not in "abcdefghijklmnopqrstuvwxyz":
                 word = word.replace(ch, '')
 
-        all_words.append(word)
+        if word != '':
+            all_words.append(word)
 
 # Make counter to make a Counter dictionary
 word_counts = Counter(all_words)
