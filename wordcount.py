@@ -21,7 +21,7 @@ for line in file:
     for word in lower_words:
         # replace non-letters with ''
         for ch in word:
-            if ch not in "abcdefghijklmnopqrstuvwxyz":
+            if not ch.isalpha():
                 word = word.replace(ch, '')
 
         if word != '':
