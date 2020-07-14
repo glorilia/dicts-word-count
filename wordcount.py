@@ -1,33 +1,56 @@
 import sys
+from collections import Counter
 
 
 path = sys.argv[1]
 
 file = open(path)
 
-# Create empty dictionary of word counts
-word_counts = {}
 
-# Fill in dictionary with words as keys and counts as values
+# Create empty list for all words
+all_words = []
+
+# Add words to list
 for line in file:
     # tokenize line
-    words = line.strip().split()
+    raw_words = line.strip().split()
 
     # make all lowercase so that case is irrelevant
-    words = [word.lower() for word in words]
+    lower_words = [word.lower() for word in raw_words]
 
-    # traverse list of words
-    for word in words:
-
+    for word in lower_words:
+        # replace non-letters with ''
         for ch in word:
             if ch not in "abcdefghijklmnopqrstuvwxyz":
                 word = word.replace(ch, '')
 
-        # add to dictionary if not present
-        # update by adding one if present
-        word_counts[word] = word_counts.get(word,0) + 1
+        all_words.append(word)
+
+# Make counter to make a Counter dictionary
+word_counts = Counter(all_words)
+alpha_words = sorted(word_counts)
 
 # Print out each each word with its count
-for word, count in word_counts.items():
-    print(word, count)
+for word in alpha_words:
+    print(word, word_counts[word])
+
+
+
+# Code without using the Counter object
+
+# Create empty dictionary of word counts
+# word_counts = {}
+
+    # # traverse list of words
+    # for word in words:
+
+    #     for ch in word:
+    #         if ch not in "abcdefghijklmnopqrstuvwxyz":
+    #             word = word.replace(ch, '')
+
+    #     # add to dictionary if not present
+    #     # update by adding one if present
+    #     word_counts[word] = word_counts.get(word,0) + 1
+
+
 
